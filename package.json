@@ -1,0 +1,30 @@
+{
+  "name": "vue-common",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nuxt",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kris-Daniel/vue-common.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kris-Daniel/vue-common/issues"
+  },
+  "homepage": "https://github.com/Kris-Daniel/vue-common#readme",
+  "devDependencies": {
+    "axios": "^0.19.0",
+    "less-loader": "^5.0.0",
+    "node-less": "^1.0.0",
+    "nuxt": "^2.8.1"
+  },
+  "dependencies": {
+    "@nuxtjs/axios": "^5.5.4",
+    "less": "^3.9.0"
+  }
+}
