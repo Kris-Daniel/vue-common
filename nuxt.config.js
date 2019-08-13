@@ -9,6 +9,9 @@ export default {
             { hid: 'description', name: 'description', content: 'Meta description' }
         ]
     },
+    build: {
+        vendor: ['aframe']
+    },
     css: [
         '@/assets/css/loader.less'
     ],
