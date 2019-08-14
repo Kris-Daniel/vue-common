@@ -127,12 +127,12 @@ export default {
 		border: 1px solid #f3f3f6;
 		cursor: pointer;
 		&:hover {
-			border: 1px solid rgba(0, 206, 201, 1);
+			border: 1px solid coral;
 		}
 		.to(850px, {padding: 0px 20px;});
 	}
 	&.active .accord_head {
-		border: 1px solid rgba(0, 206, 201, 1);
+		border: 1px solid coral;
 		border-bottom: 1px solid #c2c9dd;
 	}
 	.accord_head-right {
@@ -183,9 +183,8 @@ export default {
 	.accord_content {
 		// .scrollstyleY();
 		transition: 130ms height ease;
-		border: 1px solid rgba(0, 206, 201, 1);
-		border-top: 1px solid transparent;
-		background: #f3f3f6;
+		border: 1px solid coral;
+		border-top: none;
 		overflow: hidden;
 	}
 	&:not(.active) .accord_content {
