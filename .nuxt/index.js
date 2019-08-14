@@ -11,6 +11,7 @@ import { setContext, getLocation, getRouteData, normalizeError } from './utils'
 /* Plugins */
 
 import nuxt_plugin_bootstrap_68fdc73f from 'nuxt_plugin_bootstrap_68fdc73f' // Source: ..\\plugins\\bootstrap.js (mode: 'client')
+import nuxt_plugin_globalSvg_3b2eb50c from 'nuxt_plugin_globalSvg_3b2eb50c' // Source: ..\\plugins\\globalSvg.js (mode: 'client')
 
 // Component: <NoSsr>
 Vue.component(NoSsr.name, NoSsr)
@@ -131,6 +132,10 @@ async function createApp(ssrContext) {
 
   if (process.client && typeof nuxt_plugin_bootstrap_68fdc73f === 'function') {
     await nuxt_plugin_bootstrap_68fdc73f(app.context, inject)
+  }
+
+  if (process.client && typeof nuxt_plugin_globalSvg_3b2eb50c === 'function') {
+    await nuxt_plugin_globalSvg_3b2eb50c(app.context, inject)
   }
 
   // If server-side, wait for async component to be resolved first

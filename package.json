@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "nuxt",
+    "generate": "nuxt generate",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -26,6 +27,7 @@
   "dependencies": {
     "@nuxtjs/axios": "^5.5.4",
     "aframe": "^0.9.2",
-    "less": "^3.9.0"
+    "less": "^3.9.0",
+    "nuxt-svg-loader": "^1.0.1"
   }
 }

@@ -17,8 +17,10 @@ export default {
     ],
     plugins: [
         { src: '~/plugins/bootstrap.js', mode: 'client' },
+        { src: '~/plugins/globalSvg.js', mode: 'client' },
     ],
     modules: [
+        'nuxt-svg-loader',
         // Using package name
         // '@nuxtjs/axios',
 
