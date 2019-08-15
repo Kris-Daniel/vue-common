@@ -1,11 +1,12 @@
 import Vue from "vue";
 import CalendarService from "./CalendarService";
 export default {
-    name: 'CalendarStore',
+    name: "CalendarStore",
     data: function () {
         return {
             currentDate: new Date(),
-            state: 'month',
+            currentView: "DaySelect",
+            state: "month",
             numOfWeeksCustom: 6,
             yearId: 1970,
             monthId: false,
@@ -21,10 +22,10 @@ export default {
             additional: {},
 
             MONTHS: [
-                'January', 'February', 'March', 'April', 'May', 'June',
-                'July', 'August', 'September', 'October', 'November', 'December'
+                "January", "February", "March", "April", "May", "June",
+                "July", "August", "September", "October", "November", "December"
             ],
-            WEEK: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+            WEEK: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
             isCreated: false
         }
     },

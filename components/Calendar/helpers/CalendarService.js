@@ -98,8 +98,8 @@ class CalendarServiceClass {
         let weeks = [];
         if(numOfWeeks == 6) {
             let day = this.getDayById(dayId);
-            let daysNum = this.getDaysInMonthByDayId(dayId);
-            for(let i = 1; i - daysNum <= 7; i += 7) {
+            // let daysNum = this.getDaysInMonthByDayId(dayId);
+            for(let i = 1; i <= 36; i += 7) {
                 let id = (dayId - day + i);
                 weeks.push({
                     id: `week${id}`,

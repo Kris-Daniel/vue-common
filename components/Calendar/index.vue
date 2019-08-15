@@ -1,8 +1,7 @@
 <template>
 	<div class="calendar" :class="[cssClass]">
 		<no-ssr>
-			<ViewControl></ViewControl>
-			<Weeks></Weeks>
+			<CurrentView></CurrentView>
 		</no-ssr>
 	</div>
 </template>
@@ -10,8 +9,7 @@
 <script>
 import Vue from "vue";
 import CalendarStore from "./helpers/CalendarStore";
-import Weeks from "./Weeks";
-import ViewControl from "./ViewControl";
+import CurrentView from "./CurrentView";
 export default {
 	name: "Calendar",
 	props: {
@@ -19,16 +17,7 @@ export default {
 		settings: Object
 	},
 	components: {
-		Weeks,
-		ViewControl
-	},
-	data() {
-		return {};
-	},
-	computed: {
-		state() {
-			return this.CalendarStore ? this.CalendarStore.state : false;
-		}
+		CurrentView
 	},
 	created() {
 		this.CalendarStore = new Vue(CalendarStore);
