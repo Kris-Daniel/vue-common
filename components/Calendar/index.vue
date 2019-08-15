@@ -24,12 +24,11 @@ export default {
 		this.calendarKey = "Krislendar";
 
 		this.CalendarStore.setStore({
-			options: {
-				multiselect: true
-			},
 			from: "2018-02-02",
 			to: "2020-02-02"
 		});
+
+		console.log(this.CalendarStore._data, "CalendarStore");
 	},
 	methods: {}
 };

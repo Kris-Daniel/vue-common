@@ -47,6 +47,9 @@ export default {
         },
         monthName() {
             return this.MONTHS[this.month];
+        },
+        multiselect() {
+            return this.options.multiselect;
         }
     },
     watch: {
@@ -64,6 +67,9 @@ export default {
                 let month = CalendarService.getMonthById(this.monthId);
                 this.monthId = CalendarService.getMonthId(this.yearId, month);
             }
+        },
+        multiselect() {
+            Vue.set(this, "checkedDays", {});
         }
     },
     methods: {

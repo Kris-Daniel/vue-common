@@ -116,6 +116,14 @@ class CalendarServiceClass {
         return weeks;
     }
 
+    get10Years(year) {
+        let years = [year - year % 10];
+        for(let i = 1; i <= 10; i++)
+            years.push(years[0] + i);
+        return years;
+        
+    }
+
     getWeeksInMonth(monthId, mondayFirst) {
         let monthObj = this.getMonthObj(monthId);
         let weeksInMonth = [];

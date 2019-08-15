@@ -1,5 +1,5 @@
 <template>
-	<div class="view-control">
+	<div class="day-view-control">
 		<div class="vc-btn vc-btn--prev" @click="changeYearId(-1)">
 			<LeftDoubleSvg></LeftDoubleSvg>
 		</div>
@@ -24,7 +24,7 @@ import LeftDoubleSvg from "../icons/LeftDoubleSVG";
 import RightSvg from "../icons/RightSVG";
 import RightDoubleSvg from "../icons/RightDoubleSVG";
 export default {
-	name: "ViewControl",
+	name: "DayViewControl",
 	mixins: [CalendarMixin],
 	components: {
 		LeftSvg,
@@ -50,10 +50,11 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.view-control {
+.day-view-control {
 	position: relative;
 	text-align: center;
 	font-size: 16px;
+	line-height: 1;
 	height: 24px;
 	&:after {
 		visibility: hidden;
@@ -63,44 +64,47 @@ export default {
 		clear: both;
 		height: 0;
 	}
-}
-.vc-btn {
-	transition: 150ms all ease;
-	cursor: pointer;
-	font-size: 12px;
-	margin-top: 6px;
-	&:hover {
-		transform: scale(1.1);
+	.vc-btn {
+		transition: 150ms all ease;
+		cursor: pointer;
+		font-size: 12px;
+		margin-top: 6px;
+		&:hover {
+			transform: scale(1.1);
+		}
+		svg {
+			height: 12px;
+			width: 12px;
+		}
+		&--prev {
+			float: left;
+			margin-left: 10px;
+		}
+		&--next {
+			float: right;
+			margin-right: 10px;
+		}
 	}
-	svg {
-		height: 12px;
-		width: 12px;
-	}
-	&--prev {
-		float: left;
-		margin-left: 10px;
-	}
-	&--next {
-		float: right;
-		margin-right: 10px;
-	}
-}
-.vc-date {
-	position: absolute;
-	transition: 150ms all ease;
-	cursor: pointer;
-	top: 50%;
-	transform: translateY(-50%);
-	&:hover {
-		font-size: 18px;
-	}
-	&--left {
-		right: 50%;
-		margin-right: 4px;
-	}
-	&--right {
-		left: 50%;
-		margin-left: 4px;
+	.vc-date {
+		display: inline-block;
+		margin-top: 4px;
+		// position: absolute;
+		// top: 50%;
+		// transform: translateY(-50%);
+		transition: 150ms all ease;
+		cursor: pointer;
+		&:hover {
+			margin-top: 3px;
+			font-size: 18px;
+		}
+		&--left {
+			right: 50%;
+			margin-right: 4px;
+		}
+		&--right {
+			left: 50%;
+			margin-left: 4px;
+		}
 	}
 }
 </style>

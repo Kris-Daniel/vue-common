@@ -1,17 +1,20 @@
 <template>
 	<div class="day-select">
-		<ViewControl></ViewControl>
+		<DayViewControl></DayViewControl>
+        <WeekDays></WeekDays>
 		<Weeks></Weeks>
 	</div>
 </template>
 
 <script>
-import ViewControl from "../ViewControl";
+import DayViewControl from "../DayViewControl";
+import WeekDays from "../WeekDays";
 import Weeks from "../Weeks";
 export default {
 	name: "DaySelect",
 	components: {
-		ViewControl,
+        DayViewControl,
+        WeekDays,
 		Weeks
 	}
 };
