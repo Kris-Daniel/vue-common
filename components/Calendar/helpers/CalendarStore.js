@@ -6,8 +6,8 @@ export default {
         return {
             currentDate: new Date(),
             state: 'month',
-            weekCount: 6,
-            yearId: false,
+            numOfWeeksCustom: 6,
+            yearId: 1970,
             monthId: false,
             dayId: false,
             from: false,
@@ -18,7 +18,39 @@ export default {
                 mondayFirst: true,
                 multiselect: false
             },
-            additional: {}
+            additional: {},
+
+            isCreated: false
+        }
+    },
+    computed: {
+        dateId() {
+            let dateId = CalendarService.getDayStr(
+                this.yearId,
+                CalendarService.getMonthById(this.monthId),
+                CalendarService.getDayById(this.dayId)
+            );
+            console.log(`dateId is ${dateId}`);
+            return dateId;
+        },
+        numOfWeeks() {
+            return this.state == "month" ? 6 : this.numOfWeeksCustom;
+        },
+    },
+    watch: {
+        dateId() { },
+        numOfWeeks() { },
+        monthId() {
+            if (this.isCreated) {
+                let date = CalendarService.getDateByMonthId(this.monthId);
+                this.dayId = CalendarService.getDayId(date.getTime());
+            }
+        },
+        yearId() {
+            if (this.isCreated) {
+                let month = CalendarService.getMonthById(this.monthId);
+                this.monthId = CalendarService.getMonthId(this.yearId, month);
+            }
         }
     },
     methods: {
@@ -30,12 +62,15 @@ export default {
             this.monthId = CalendarService.getMonthId(y, m);
             this.dayId = CalendarService.getDayId(timeStamp);
             this.setStoreOptions(options);
-            console.log(this._data);
+
+            this.$nextTick(() => {
+                this.isCreated = true;
+            });
         },
         setStoreOptions(options) {
-            for(let prop in options) {
-                if(prop == "options") {
-                    for(let option in options[prop])
+            for (let prop in options) {
+                if (prop == "options" || prop == "additional") {
+                    for (let option in options[prop])
                         Vue.set(this.options, option, options[prop][option]);
                 }
                 else Vue.set(this, prop, options[prop])

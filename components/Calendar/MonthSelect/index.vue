@@ -1,11 +1,11 @@
 <template>
-    <div class="calendar">
+    <div class="month-select">
         
     </div>
 </template>
 
 <script>
 export default {
-    name: "Calendar"
+    name: "MonthSelect"
 }
 </script>

@@ -11,69 +11,113 @@ class CalendarServiceClass {
     getDayId(timeStamp) {
         return Math.floor(timeStamp / 86400000);
     }
-    getMonthById(monthId) {
+    getMonthById(monthId, withZero) {
         let y = Math.floor(monthId / 12);
         let m = monthId - (y * 12);
-        return m;
+        return withZero ? this.zeroToNum(m) : m;
     }
-    getDayById(dayId) {
+    getDayById(dayId, withZero) {
         let t = new Date(dayId * 86400000);
-        let d = t.getDay();
-        return d;
+        let d = t.getDate();
+        return withZero ? this.zeroToNum(d) : d;
     }
 
-    getWeek(dayN, mondayFirst) {
-        let t = new Date(dayN * 86400000);
+    getYearByMonthId(monthId) {
+        return Math.floor(monthId / 12);
+    }
+    getMonthByMonthId(year, monthId) {
+        return monthId - (year * 12);
+    }
+
+    getDateByMonthId(monthId) {
+        let year = this.getYearByMonthId(monthId);
+        let month = this.getMonthByMonthId(year, monthId);
+        return new Date(`${year}-${this.zeroToNum(month + 1)}`);
+    }
+
+    getWeek(dayId, mondayFirst) {
+        let t = new Date(dayId * 86400000);
         let mid = t.getDay();
         let arr = [];
 
         if (mondayFirst) {
             if (mid == 0)
                 for (let i = 0; i < 7; i++)
-                    arr.unshift(dayN - i);
+                    arr.unshift(dayId - i);
             else
                 for (let i = 1; i < 8; i++)
-                    arr.push(dayN - (mid - i));
+                    arr.push(dayId - (mid - i));
         }
         else {
             for (let i = 0; i < 7; i++)
-                arr.push(dayN - (mid - i));
+                arr.push(dayId - (mid - i));
         }
         return arr;
     }
 
-    getMonth(monthN) {
-        let year = Math.floor(monthN / 12);
-        let month = monthN - (year * 12);
+    
 
-        let res = {
+    getMonthObj(monthId) {
+        let year = this.getYearByMonthId(monthId);
+        let month = this.getYearByMonthId(year, monthId);
+
+        let monthObj = {
             year,
             month,
             days: null,
         }
 
+        monthObj.days = this.getDaysInMonth(year, month);
+        return monthObj;
+    }
+    getDaysInMonth(year, month) {
         if ((!(year % 4) && !!(year % 100)) || !(year % 400))
-            res.days = daysX[month];
+            return daysX[month];
         else
-            res.days = days[month];
-        return res;
+            return days[month];
+    }
+
+    getDaysInMonthByDayId(dayId) {
+        let date = new Date(dayId * 86400000);
+        return this.getDaysInMonth(
+            date.getFullYear(),
+            date.getMonth()
+        );
     }
 
     zeroToNum(num) {
         num = num.toString();
-        num = num.length < 2 ? '0' + num : num;
-        return num;
+        return num.length < 2 ? '0' + num : num;
     }
 
     getDayStr(year, month, day) {
-        let dayStr = year + '-';
-        dayStr += this.zeroToNum(month + 1) + '-';
-        dayStr += this.zeroToNum(day);
-        return dayStr;
+        return `${year}-${this.zeroToNum(month + 1)}-${this.zeroToNum(day)}`;
     }
 
-    getWeeksInMonth(monthN, mondayFirst) {
-        let monthObj = this.getMonth(monthN);
+    getWeeks(dayId, numOfWeeks, mondayFirst) {
+        let weeks = [];
+        if(numOfWeeks == 6) {
+            let day = this.getDayById(dayId);
+            let daysNum = this.getDaysInMonthByDayId(dayId);
+            for(let i = 1; i - daysNum <= 7; i += 7) {
+                let id = (dayId - day + i);
+                weeks.push({
+                    id: `week${id}`,
+                    week: this.getWeek(id, mondayFirst)
+                });
+            }
+        } else {
+            for(let i = 0; i < numOfWeeks; i+= 7, dayId += 7)
+                weeks.push({
+                    id: `week${dayId}`,
+                    week: this.getWeek(dayId), mondayFirst
+                });
+        }
+        return weeks;
+    }
+
+    getWeeksInMonth(monthId, mondayFirst) {
+        let monthObj = this.getMonthObj(monthId);
         let weeksInMonth = [];
         for (let i = 1; (i - monthObj.days) <= 7; i += 7) {
             let dayNM = i > monthObj.days ? monthObj.days : i;

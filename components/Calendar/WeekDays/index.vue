@@ -1,11 +1,11 @@
 <template>
-    <div class="calendar">
+    <div class="weekdays">
         
     </div>
 </template>
 
 <script>
 export default {
-    name: "Calendar"
+    name: "Weekdays"
 }
 </script>
