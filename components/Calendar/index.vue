@@ -39,5 +39,7 @@ export default {
 		max-width: 250px;
 		margin: 0 auto;
 		user-select: none;
+		padding: 5px;
+		box-shadow: 0 0 4px 0px rgba(0, 0, 0, 0.4);
 	}
 </style>

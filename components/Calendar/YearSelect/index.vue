@@ -27,7 +27,7 @@ export default {
     methods: {
         changeYearId(year) {
             this.CalendarStore.yearId = year;
-            this.CalendarStore.currentView = "DaySelect";
+            this.CalendarStore.currentView = "MonthSelect";
         }
     }
 };
