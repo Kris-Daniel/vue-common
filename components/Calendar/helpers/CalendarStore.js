@@ -20,6 +20,11 @@ export default {
             },
             additional: {},
 
+            MONTHS: [
+                'January', 'February', 'March', 'April', 'May', 'June',
+                'July', 'August', 'September', 'October', 'November', 'December'
+            ],
+            WEEK: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
             isCreated: false
         }
     },
@@ -36,6 +41,12 @@ export default {
         numOfWeeks() {
             return this.state == "month" ? 6 : this.numOfWeeksCustom;
         },
+        month() {
+            return CalendarService.getMonthById(this.monthId);
+        },
+        monthName() {
+            return this.MONTHS[this.month];
+        }
     },
     watch: {
         dateId() { },
@@ -44,6 +55,7 @@ export default {
             if (this.isCreated) {
                 let date = CalendarService.getDateByMonthId(this.monthId);
                 this.dayId = CalendarService.getDayId(date.getTime());
+                this.yearId = date.getFullYear();
             }
         },
         yearId() {

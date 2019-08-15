@@ -1,9 +1,7 @@
 <template>
 	<div class="calendar" :class="[cssClass]">
-		<span @click="changeMonthId(-1)">Next</span> -
-		<span @click="changeMonthId(1)">Prev</span>
 		<no-ssr>
-			{{state}}
+			<ViewControl></ViewControl>
 			<Weeks></Weeks>
 		</no-ssr>
 	</div>
@@ -13,6 +11,7 @@
 import Vue from "vue";
 import CalendarStore from "./helpers/CalendarStore";
 import Weeks from "./Weeks";
+import ViewControl from "./ViewControl";
 export default {
 	name: "Calendar",
 	props: {
@@ -20,7 +19,8 @@ export default {
 		settings: Object
 	},
 	components: {
-		Weeks
+		Weeks,
+		ViewControl
 	},
 	data() {
 		return {};
@@ -42,10 +42,14 @@ export default {
 			to: "2020-02-02"
 		});
 	},
-	methods: {
-		changeMonthId(step) {
-			this.CalendarStore.monthId += step;
-		}
-	}
+	methods: {}
 };
 </script>
+
+<style lang="less" scoped>
+	.calendar{
+		max-width: 250px;
+		margin: 0 auto;
+		user-select: none;
+	}
+</style>

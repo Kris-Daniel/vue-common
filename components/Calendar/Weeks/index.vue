@@ -30,17 +30,17 @@ export default {
 			return weeks;
 		}
 	},
-	watch: {
-		weeks() {
-			console.log("weeks was changed");
-			this.$forceUpdate();
-		}
-	},
 	created() {
 		console.log(this.CalendarStore._data, "here");
-		setTimeout(() => {
-            // this.CalendarStore.dayId += 30;
-		}, 3000);
 	}
 };
 </script>
+
+<style lang="less" scoped>
+.weeks {
+	width: 100%;
+	border-collapse: collapse;
+	table-layout: fixed;
+	border-spacing: 0;
+}
+</style>
