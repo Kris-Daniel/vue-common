@@ -1,5 +1,5 @@
 <template>
-	<td class="day" :class="{checked, default: isDefault}" @click="toggleCheck">{{dayObj.day}}</td>
+	<td class="day" :class="{checked, default: isDefault, another: anotherMonth}" @click="toggleCheck">{{dayObj.day}}</td>
 </template>
 
 <script>
@@ -35,6 +35,12 @@ export default {
                 }
             }
             return isDefault;
+        },
+        anotherMonth() {
+            let another = false;
+            if(this.CalendarStore.monthId != CalendarService.getMonthId(this.dayObj.year, this.dayObj.month))
+                another = true;
+            return another;
         }
     },
 	created() {
@@ -71,13 +77,17 @@ export default {
         text-align: center;
         cursor: pointer;
         &:hover{
-            background: #ccc;
+            background: #ddd;
+        }
+        &.another{
+            color: #bbb;
         }
         &.checked{
             background: coral;
+            color: #fff;
         }
         &.default{
-            background: #ddd;
+            background: #ccc;
         }
     }
 </style>
