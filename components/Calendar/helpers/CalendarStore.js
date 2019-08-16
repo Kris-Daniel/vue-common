@@ -26,7 +26,8 @@ export default {
                 "July", "August", "September", "October", "November", "December"
             ],
             WEEK: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-            isCreated: false
+            isCreated: false,
+            originalOptions: {}
         }
     },
     computed: {
@@ -80,7 +81,9 @@ export default {
             this.yearId = y;
             this.monthId = CalendarService.getMonthId(y, m);
             this.dayId = CalendarService.getDayId(timeStamp);
-            this.setStoreOptions(options);
+
+            if(options) this.originalOptions = options;
+            this.setStoreOptions(this.originalOptions);
 
             this.$nextTick(() => {
                 this.isCreated = true;

@@ -35,41 +35,15 @@ class CalendarServiceClass {
         return new Date(`${year}-${this.zeroToNum(month + 1)}`);
     }
 
-    getWeek(dayId, mondayFirst) {
-        let t = new Date(dayId * 86400000);
-        let mid = t.getDay();
-        let arr = [];
-
-        if (mondayFirst) {
-            if (mid == 0)
-                for (let i = 0; i < 7; i++)
-                    arr.unshift(dayId - i);
-            else
-                for (let i = 1; i < 8; i++)
-                    arr.push(dayId - (mid - i));
-        }
-        else {
-            for (let i = 0; i < 7; i++)
-                arr.push(dayId - (mid - i));
-        }
-        return arr;
+    getDayStr(year, month, day) {
+        return `${year}-${this.zeroToNum(month + 1)}-${this.zeroToNum(day)}`;
     }
 
-    
-
-    getMonthObj(monthId) {
-        let year = this.getYearByMonthId(monthId);
-        let month = this.getYearByMonthId(year, monthId);
-
-        let monthObj = {
-            year,
-            month,
-            days: null,
-        }
-
-        monthObj.days = this.getDaysInMonth(year, month);
-        return monthObj;
+    zeroToNum(num) {
+        num = num.toString();
+        return num.length < 2 ? '0' + num : num;
     }
+
     getDaysInMonth(year, month) {
         if ((!(year % 4) && !!(year % 100)) || !(year % 400))
             return daysX[month];
@@ -83,15 +57,6 @@ class CalendarServiceClass {
             date.getFullYear(),
             date.getMonth()
         );
-    }
-
-    zeroToNum(num) {
-        num = num.toString();
-        return num.length < 2 ? '0' + num : num;
-    }
-
-    getDayStr(year, month, day) {
-        return `${year}-${this.zeroToNum(month + 1)}-${this.zeroToNum(day)}`;
     }
 
     getWeeks(dayId, numOfWeeks, mondayFirst) {
@@ -116,6 +81,26 @@ class CalendarServiceClass {
         return weeks;
     }
 
+    getWeek(dayId, mondayFirst) {
+        let t = new Date(dayId * 86400000);
+        let mid = t.getDay();
+        let arr = [];
+
+        if (mondayFirst) {
+            if (mid == 0)
+                for (let i = 0; i < 7; i++)
+                    arr.unshift(dayId - i);
+            else
+                for (let i = 1; i < 8; i++)
+                    arr.push(dayId - (mid - i));
+        }
+        else {
+            for (let i = 0; i < 7; i++)
+                arr.push(dayId - (mid - i));
+        }
+        return arr;
+    }
+
     get10Years(year) {
         let years = [year - year % 10];
         for(let i = 1; i <= 10; i++)
@@ -123,6 +108,8 @@ class CalendarServiceClass {
         return years;
         
     }
+
+    /* For another Service */
 
     getWeeksInMonth(monthId, mondayFirst) {
         let monthObj = this.getMonthObj(monthId);
@@ -138,6 +125,20 @@ class CalendarServiceClass {
         if (weeksInMonth[weeksInMonth.length - 1][0] == weeksInMonth[weeksInMonth.length - 2][0])
             weeksInMonth.pop();
         return weeksInMonth;
+    }
+
+    getMonthObj(monthId) {
+        let year = this.getYearByMonthId(monthId);
+        let month = this.getYearByMonthId(year, monthId);
+
+        let monthObj = {
+            year,
+            month,
+            days: null,
+        }
+
+        monthObj.days = this.getDaysInMonth(year, month);
+        return monthObj;
     }
 
     addHourDelimiter(value) {

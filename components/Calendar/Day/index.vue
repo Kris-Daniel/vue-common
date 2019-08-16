@@ -1,5 +1,5 @@
 <template>
-	<td class="day" :class="{checked}" @click="toggleCheck">{{dayObj.day}}</td>
+	<td class="day" :class="{checked, default: isDefault}" @click="toggleCheck">{{dayObj.day}}</td>
 </template>
 
 <script>
@@ -25,6 +25,16 @@ export default {
                     checked = true;
             }
             return checked;
+        },
+        isDefault() {
+            let isDefault = false;
+            if(this.CalendarStore) {
+                if(this.CalendarStore.defaultDays[this.ref]) {
+                    Vue.set(this.CalendarStore.checkedDays, this.ref, true);
+                    isDefault = true;
+                }
+            }
+            return isDefault;
         }
     },
 	created() {
@@ -32,6 +42,8 @@ export default {
         this.dayObj.year = this.dayObj.date.getFullYear();
         this.dayObj.month = this.dayObj.date.getMonth();
         this.dayObj.day = this.dayObj.date.getDate();
+        this.dayObj.weekDay = this.dayObj.date.getDay();
+        this.dayObj.weekDayName = this.CalendarStore.WEEK[this.dayObj.weekDay];
         this.dayObj.dayStr = CalendarService.getDayStr(
             this.dayObj.year,
             this.dayObj.month,
@@ -63,6 +75,9 @@ export default {
         }
         &.checked{
             background: coral;
+        }
+        &.default{
+            background: #ddd;
         }
     }
 </style>

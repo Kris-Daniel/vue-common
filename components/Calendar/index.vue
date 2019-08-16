@@ -24,6 +24,9 @@ export default {
 		this.calendarKey = "Krislendar";
 
 		this.CalendarStore.setStore({
+			defaultDays: {
+				"d2019-08-20": true
+			},
 			from: "2018-02-02",
 			to: "2020-02-02"
 		});

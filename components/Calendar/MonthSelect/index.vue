@@ -8,6 +8,7 @@
 </template>
 
 <script>
+import CalendarService from "../helpers/CalendarService";
 import CalendarMixin from "../helpers/CalendarMixin";
 import MonthViewControl from "../MonthViewControl";
 export default {
@@ -26,7 +27,7 @@ export default {
     },
     methods: {
         changeMonthId(index) {
-            this.CalendarStore.monthId = this.yearId * 12 + index;
+            this.CalendarStore.monthId = CalendarService.getMonthId(this.yearId, index);
             this.CalendarStore.currentView = "DaySelect";
         },
     }
