@@ -28,6 +28,10 @@ class CalendarServiceClass {
     getMonthByMonthId(year, monthId) {
         return monthId - (year * 12);
     }
+    getMonthByDayId(dayId) {
+        let t = new Date(dayId * 86400000);
+        return t.getMonth();
+    }
 
     getDateByMonthId(monthId) {
         let year = this.getYearByMonthId(monthId);
@@ -61,10 +65,10 @@ class CalendarServiceClass {
 
     getWeeks(dayId, numOfWeeks, mondayFirst) {
         let weeks = [];
-        if(numOfWeeks == 6) {
+        if (numOfWeeks == 6) {
             let day = this.getDayById(dayId);
             // let daysNum = this.getDaysInMonthByDayId(dayId);
-            for(let i = 1; i <= 36; i += 7) {
+            for (let i = 1; i <= 36; i += 7) {
                 let id = (dayId - day + i);
                 weeks.push({
                     id: `week${id}`,
@@ -72,10 +76,10 @@ class CalendarServiceClass {
                 });
             }
         } else {
-            for(let i = 0; i < numOfWeeks; i+= 7, dayId += 7)
+            for (let i = 0; i < numOfWeeks * 7; i += 7, dayId += 7)
                 weeks.push({
                     id: `week${dayId}`,
-                    week: this.getWeek(dayId), mondayFirst
+                    week: this.getWeek(dayId, mondayFirst)
                 });
         }
         return weeks;
@@ -103,10 +107,10 @@ class CalendarServiceClass {
 
     get10Years(year) {
         let years = [year - year % 10];
-        for(let i = 1; i <= 10; i++)
+        for (let i = 1; i <= 10; i++)
             years.push(years[0] + i);
         return years;
-        
+
     }
 
     /* For another Service */
@@ -150,7 +154,7 @@ class CalendarServiceClass {
     }
 
     getIntHours(time) {
-        if(time.length < 2) return "";
+        if (time.length < 2) return "";
         time = time.split(":").join("");
         return parseInt(time);
     }

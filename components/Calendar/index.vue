@@ -24,6 +24,8 @@ export default {
 		this.calendarKey = "Krislendar";
 
 		this.CalendarStore.setStore({
+			numOfWeeksCustom: 2,
+			stateMonth: false,
 			defaultDays: {
 				"d2019-08-20": true
 			},

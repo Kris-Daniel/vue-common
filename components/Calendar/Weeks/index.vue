@@ -29,6 +29,11 @@ export default {
 				this.mondayFirst
 			);
 		}
+	},
+	watch: {
+		weeks() {
+			this.$emit("weeksChanged", this.weeks);
+		}
 	}
 };
 </script>

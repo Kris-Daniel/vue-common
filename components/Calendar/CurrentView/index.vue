@@ -9,6 +9,7 @@ import CalendarMixin from "../helpers/CalendarMixin";
 import YearSelect from "../YearSelect";
 import MonthSelect from "../MonthSelect";
 import DaySelect from "../DaySelect";
+import CustomSelect from "../CustomSelect";
 
 export default {
 	name: "CurrentView",
@@ -16,7 +17,8 @@ export default {
 	components: {
         YearSelect,
         MonthSelect,
-        DaySelect
+		DaySelect,
+		CustomSelect
 	},
 	data() {
 		return {

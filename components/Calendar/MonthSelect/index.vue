@@ -28,7 +28,7 @@ export default {
     methods: {
         changeMonthId(index) {
             this.CalendarStore.monthId = CalendarService.getMonthId(this.yearId, index);
-            this.CalendarStore.currentView = "DaySelect";
+            this.CalendarStore.currentView = this.CalendarStore.stateMonth ? "DaySelect" : "CustomSelect";
         },
     }
 };

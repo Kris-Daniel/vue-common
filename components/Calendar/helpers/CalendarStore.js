@@ -6,7 +6,7 @@ export default {
         return {
             currentDate: new Date(),
             currentView: "DaySelect",
-            state: "month",
+            stateMonth: true,
             numOfWeeksCustom: 6,
             yearId: 1970,
             monthId: false,
@@ -41,7 +41,7 @@ export default {
             return dateId;
         },
         numOfWeeks() {
-            return this.state == "month" ? 6 : this.numOfWeeksCustom;
+            return this.stateMonth ? 6 : this.numOfWeeksCustom;
         },
         month() {
             return CalendarService.getMonthById(this.monthId);
@@ -55,7 +55,9 @@ export default {
     },
     watch: {
         dateId() { },
-        numOfWeeks() { },
+        numOfWeeks() {
+            if (this.numOfWeeks != 6) this.currentView = "CustomSelect";
+        },
         monthId() {
             if (this.isCreated) {
                 let date = CalendarService.getDateByMonthId(this.monthId);
@@ -82,7 +84,7 @@ export default {
             this.monthId = CalendarService.getMonthId(y, m);
             this.dayId = CalendarService.getDayId(timeStamp);
 
-            if(options) this.originalOptions = options;
+            if (options) this.originalOptions = options;
             this.setStoreOptions(this.originalOptions);
 
             this.$nextTick(() => {
