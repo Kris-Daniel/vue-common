@@ -1,8 +1,6 @@
 <template>
 	<div class="calendar" :class="[cssClass]">
-		<no-ssr>
-			<CurrentView></CurrentView>
-		</no-ssr>
+		<CurrentView></CurrentView>
 	</div>
 </template>
 
@@ -24,13 +22,20 @@ export default {
 		this.calendarKey = "Krislendar";
 
 		this.CalendarStore.setStore({
-			numOfWeeksCustom: 2,
-			stateMonth: false,
+			numOfWeeksCustom: 1,
 			defaultDays: {
 				"d2019-08-20": true
 			},
 			from: "2018-02-02",
-			to: "2020-02-02"
+			to: "2020-02-02",
+			changeStateMonth() {
+				let windowResize = () => {
+					let width = parseFloat(window.getComputedStyle(document.querySelector("body"), null).width.replace("px", ""));
+					this.stateMonth = width < 768 ? false : true;
+				}
+				windowResize();
+				window.addEventListener("resize", windowResize);
+			}
 		});
 
 		console.log(this.CalendarStore._data, "CalendarStore");

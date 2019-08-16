@@ -17,7 +17,7 @@ class CalendarServiceClass {
         return withZero ? this.zeroToNum(m) : m;
     }
     getDayById(dayId, withZero) {
-        let t = new Date(dayId * 86400000);
+        let t = this.getDateByDayId(dayId);
         let d = t.getDate();
         return withZero ? this.zeroToNum(d) : d;
     }
@@ -29,8 +29,11 @@ class CalendarServiceClass {
         return monthId - (year * 12);
     }
     getMonthByDayId(dayId) {
-        let t = new Date(dayId * 86400000);
+        let t = this.getDateByDayId(dayId);
         return t.getMonth();
+    }
+    getDateByDayId(dayId) {
+        return new Date(dayId * 86400000);
     }
 
     getDateByMonthId(monthId) {

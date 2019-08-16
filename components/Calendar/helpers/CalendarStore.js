@@ -5,8 +5,11 @@ export default {
     data: function () {
         return {
             currentDate: new Date(),
+            currentDayId: false,
+            currentDayInView: false,
             currentView: "DaySelect",
             stateMonth: true,
+            changeStateMonth() { },
             numOfWeeksCustom: 6,
             yearId: 1970,
             monthId: false,
@@ -27,7 +30,7 @@ export default {
             ],
             WEEK: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
             isCreated: false,
-            originalOptions: {}
+            originalOptions: false
         }
     },
     computed: {
@@ -37,7 +40,6 @@ export default {
                 CalendarService.getMonthById(this.monthId),
                 CalendarService.getDayById(this.dayId)
             );
-            console.log(`dateId is ${dateId}`);
             return dateId;
         },
         numOfWeeks() {
@@ -61,8 +63,9 @@ export default {
         monthId() {
             if (this.isCreated) {
                 let date = CalendarService.getDateByMonthId(this.monthId);
-                this.dayId = CalendarService.getDayId(date.getTime());
                 this.yearId = date.getFullYear();
+                if (this.stateMonth)
+                    this.dayId = CalendarService.getDayId(date.getTime());
             }
         },
         yearId() {
@@ -71,8 +74,17 @@ export default {
                 this.monthId = CalendarService.getMonthId(this.yearId, month);
             }
         },
+        dayId() {
+            if (this.isCreated && !this.stateMonth) {
+                let date = CalendarService.getDateByDayId(this.dayId);
+                this.monthId = CalendarService.getMonthId(date.getFullYear(), date.getMonth());
+            }
+        },
         multiselect() {
             Vue.set(this, "checkedDays", {});
+        },
+        stateMonth() {
+            if (this.stateMonth) this.currentView = "DaySelect";
         }
     },
     methods: {
@@ -83,13 +95,16 @@ export default {
             this.yearId = y;
             this.monthId = CalendarService.getMonthId(y, m);
             this.dayId = CalendarService.getDayId(timeStamp);
-
-            if (options) this.originalOptions = options;
-            this.setStoreOptions(this.originalOptions);
-
-            this.$nextTick(() => {
-                this.isCreated = true;
-            });
+            
+            if (!this.originalOptions) {
+                this.currentDayId = this.dayId;
+                this.originalOptions = options;
+                this.setStoreOptions(this.originalOptions);
+                this.changeStateMonth.call(this);
+                this.$nextTick(() => {
+                    this.isCreated = true;
+                });
+            }
         },
         setStoreOptions(options) {
             for (let prop in options) {

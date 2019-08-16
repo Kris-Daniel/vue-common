@@ -39,7 +39,6 @@ export default {
 						CalendarService.getMonthByDayId(to)
 					].slice(0, 3)
 				}`;
-				console.log(from, to, this.weeks);
 			}
 			return fromTo;
 		}
@@ -97,6 +96,7 @@ export default {
 		display: inline-block;
 		margin-top: 4px;
 		cursor: pointer;
+		transition: 150ms all ease;
 		&:hover {
 			margin-top: 3px;
 			font-size: 18px;

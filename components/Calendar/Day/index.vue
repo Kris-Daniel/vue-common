@@ -1,5 +1,5 @@
 <template>
-	<td class="day" :class="{checked, default: isDefault, another: anotherMonth}" @click="toggleCheck">{{dayObj.day}}</td>
+	<td class="day" :class="{checked, current, default: isDefault, another: anotherMonth}" @click="toggleCheck">{{dayObj.day}}</td>
 </template>
 
 <script>
@@ -36,15 +36,18 @@ export default {
             }
             return isDefault;
         },
+        current() {
+            return this.dayId == this.CalendarStore.currentDayId ? true : false;
+        },
         anotherMonth() {
             let another = false;
-            if(this.CalendarStore.monthId != CalendarService.getMonthId(this.dayObj.year, this.dayObj.month))
+            if(this.CalendarStore.monthId != CalendarService.getMonthId(this.dayObj.year, this.dayObj.month) && this.CalendarStore.stateMonth)
                 another = true;
             return another;
         }
     },
 	created() {
-        this.dayObj.date = new Date(this.dayId * 86400000);
+        this.dayObj.date = CalendarService.getDateByDayId(this.dayId);
         this.dayObj.year = this.dayObj.date.getFullYear();
         this.dayObj.month = this.dayObj.date.getMonth();
         this.dayObj.day = this.dayObj.date.getDate();

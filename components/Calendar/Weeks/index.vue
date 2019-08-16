@@ -33,6 +33,14 @@ export default {
 	watch: {
 		weeks() {
 			this.$emit("weeksChanged", this.weeks);
+			let currentDayInView = false;
+			this.weeks.forEach(week => {
+				week.week.forEach(dayId => {
+					if (dayId == this.CalendarStore.currentDayId)
+						currentDayInView = true;
+				});
+			});
+			this.CalendarStore.currentDayInView = currentDayInView;
 		}
 	}
 };
