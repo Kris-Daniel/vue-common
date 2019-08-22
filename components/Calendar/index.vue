@@ -12,33 +12,18 @@ export default {
 	name: "Calendar",
 	props: {
 		cssClass: String,
-		settings: Object
+		settings: {
+			type: Object,
+			default: {}
+		}
 	},
 	components: {
 		CurrentView
 	},
 	created() {
-		this.CalendarStore = new Vue(CalendarStore);
 		this.calendarKey = "Krislendar";
-
-		this.CalendarStore.setStore({
-			numOfWeeksCustom: 1,
-			defaultDays: {
-				"d2019-08-20": true
-			},
-			from: "2018-02-02",
-			to: "2020-02-02",
-			changeStateMonth() {
-				let windowResize = () => {
-					let width = parseFloat(window.getComputedStyle(document.querySelector("body"), null).width.replace("px", ""));
-					this.stateMonth = width < 768 ? false : true;
-				}
-				windowResize();
-				window.addEventListener("resize", windowResize);
-			}
-		});
-
-		console.log(this.CalendarStore._data, "CalendarStore");
+		this.CalendarStore = new Vue(CalendarStore);
+		this.CalendarStore.setStore(this.settings);
 	},
 	methods: {}
 };
