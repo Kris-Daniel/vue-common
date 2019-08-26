@@ -3,19 +3,24 @@
 		<no-ssr>
 			<Accordion name="accordi">
 				<div slot="title">Info</div>
-				<div slot="content">
+				<div slot="content">Content</div>
+			</Accordion>
+			<Tabs>
+				<Tab name="Iron" :selected="true">
 					<FormVue @submit="formCallback">
 						<SelectVue name="city" placeholder="option1" :required="true">
 							<OptionVue name="option1" value="Select a City to visit:" :disabled="true" :selected="true"></OptionVue>
 							<OptionVue name="option2" value="Los-Angeles"></OptionVue>
 							<OptionVue name="option3" value="Washington"></OptionVue>
 						</SelectVue>
+						<hr>
+						<InputVue>
+							<div class="dinl-mid" slot="label">Label text</div>
+						</InputVue>
+						<hr>
 						<SubmitBtn cssClass="dinl-mid">Submit</SubmitBtn>
 					</FormVue>
-				</div>
-			</Accordion>
-			<Tabs>
-				<Tab name="Iron" :selected="true">Iron</Tab>
+				</Tab>
 				<Tab name="Gold">Gold</Tab>
 			</Tabs>
 			<Calendar :settings="calendarSettings"></Calendar>
@@ -31,7 +36,7 @@ import Accordion from "~/components/Accordion";
 import Calendar from "~/components/Calendar";
 import { Tabs, Tab } from "~/components/Tabs";
 import { SelectVue, OptionVue } from "~/components/Select/index.js";
-import { FormVue, SubmitBtn } from "~/components/Form/index.js";
+import { FormVue, SubmitBtn, InputVue } from "~/components/Form/index.js";
 export default {
 	name: "Main",
 	components: {
@@ -42,6 +47,7 @@ export default {
 		SelectVue,
 		OptionVue,
 		FormVue,
+		InputVue,
 		SubmitBtn
 	},
 	data() {
