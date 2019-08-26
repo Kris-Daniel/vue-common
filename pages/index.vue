@@ -10,11 +10,13 @@
 				<Tab name="Gold">Gold</Tab>
 			</Tabs>
 			<Calendar :settings="calendarSettings"></Calendar>
-			<SelectVue placeholder="option1" :required="true">
-				<OptionVue name="option1" value="Select a City to visit:" :disabled="true" :selected="true"></OptionVue>
-				<OptionVue name="option2" value="Los-Angeles"></OptionVue>
-				<OptionVue name="option3" value="Washington"></OptionVue>
-			</SelectVue>
+			<FormVue @submit="formCallback">
+				<SelectVue name="city" placeholder="option1" :required="true">
+					<OptionVue name="option1" value="Select a City to visit:" :disabled="true" :selected="true"></OptionVue>
+					<OptionVue name="option2" value="Los-Angeles"></OptionVue>
+					<OptionVue name="option3" value="Washington"></OptionVue>
+				</SelectVue>
+			</FormVue>
 		</no-ssr>
 	</div>
 </template>
@@ -26,7 +28,8 @@ if (process.browser) {
 import Accordion from "~/components/Accordion";
 import { Tabs, Tab } from "~/components/Tabs/index.js";
 import Calendar from "~/components/Calendar";
-import {SelectVue, OptionVue} from "~/components/Select";
+import { SelectVue, OptionVue } from "~/components/Select";
+import FormVue from "~/components/Form";
 export default {
 	name: "Main",
 	components: {
@@ -35,7 +38,8 @@ export default {
 		Tab,
 		Calendar,
 		SelectVue,
-		OptionVue
+		OptionVue,
+		FormVue
 	},
 	data() {
 		return {
@@ -44,17 +48,27 @@ export default {
 				defaultDays: { "d2019-08-20": true },
 				changeStateMonth() {
 					let windowResize = () => {
-						let width = parseFloat(window.getComputedStyle(document.querySelector("body"), null).width.replace("px", ""));
+						let width = parseFloat(
+							window
+								.getComputedStyle(
+									document.querySelector("body"),
+									null
+								)
+								.width.replace("px", "")
+						);
 						this.stateMonth = width < 768 ? false : true;
-					}
+					};
 					windowResize();
 					window.addEventListener("resize", windowResize);
 				}
-			}
-		}
+			},
+		};
 	},
-	created() {
-
+	created() {},
+	methods: {
+		formCallback(data) {
+			console.log(data);
+		}
 	}
 };
 </script>

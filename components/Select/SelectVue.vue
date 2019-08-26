@@ -19,13 +19,14 @@
 export default {
 	name: "SelectVue",
 	props: {
+		name: String,
 		required: Boolean,
 		cssClass: String,
-		placeholder: String,
+		placeholder: String
 	},
 	data() {
 		return {
-			name: false,
+			selectedOption: null,
 			selectedText: this.placeholder,
 			active: false,
 			wrong: false,
@@ -34,28 +35,41 @@ export default {
 	},
 	created() {
 		this.inputFormKey = "Select";
-		this.$emit("getInput", this);
 	},
 	mounted() {
 		this.options = this.$children;
 		this.setSelectedText();
 	},
 	methods: {
+		getValue() {
+			let value = null;
+			if (this.required && this.selectedOption === null) {
+				this.wrong = true;
+			} else {
+				value = {
+					[this.name]: this.selectedOption,
+				}
+			}
+			return value;
+		},
 		setOption(option) {
-			this.name = option.name;
+			this.wrong = false;
+			this.selectedOption = option.name;
 			this.selectedText = option.value;
 			this.setChildActive();
 		},
 		setChildActive() {
 			this.options.forEach(option => {
-				option.active = this.name == option.name;
+				option.active = this.selectedOption == option.name;
 			});
 		},
 		setSelectedText() {
 			this.options.forEach(option => {
 				if (option.active) {
-					this.name = !option.disabled ? option.name : false;
-					this.selectedText = this.name ? option.value : `<span style="opacity: 0.5">${option.value}</span>`;
+					this.selectedOption = !option.disabled ? option.name : null;
+					this.selectedText = this.selectedOption
+						? option.value
+						: `<span style="opacity: 0.5">${option.value}</span>`;
 				}
 			});
 		},
