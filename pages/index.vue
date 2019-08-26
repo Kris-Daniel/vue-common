@@ -10,10 +10,10 @@
 				<Tab name="Gold">Gold</Tab>
 			</Tabs>
 			<Calendar :settings="calendarSettings"></Calendar>
-			<SelectVue>
-				<OptionVue name="option1">1</OptionVue>
-				<OptionVue name="option2">2</OptionVue>
-				<OptionVue name="option3">3</OptionVue>
+			<SelectVue placeholder="option1" :required="true">
+				<OptionVue name="option1" value="Select a City to visit:" :disabled="true" :selected="true"></OptionVue>
+				<OptionVue name="option2" value="Los-Angeles"></OptionVue>
+				<OptionVue name="option3" value="Washington"></OptionVue>
 			</SelectVue>
 		</no-ssr>
 	</div>

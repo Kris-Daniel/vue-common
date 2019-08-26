@@ -18,6 +18,7 @@ export default {
     plugins: [
         { src: '~/plugins/bootstrap.js', mode: 'client' },
         { src: '~/plugins/globalSvg.js', mode: 'client' },
+        { src: '~/plugins/globalDirectives.js', mode: 'client' },
     ],
     modules: [
         'nuxt-svg-loader',

@@ -5,77 +5,65 @@
 		@click="toggleActive"
 		v-click-outside="disableActive"
 	>
-		{{selectedText}}
+		<span v-html="selectedText"></span>
 		<div class="angle">
-			<slot name="angle">
-				<CarretDownSVG></CarretDownSVG>
-			</slot>
+			<CarretDownSVG></CarretDownSVG>
 		</div>
 		<div class="options">
-			<div
-				class="option"
-				@click="selectOption(key)"
-				:class="{selected: selectedText == key}"
-				v-for="(option, key) in options"
-				:key="key"
-				:name="key"
-			>{{option}}</div>
+			<slot></slot>
 		</div>
 	</div>
 </template>
 
 <script>
 export default {
-	name: "Select",
+	name: "SelectVue",
 	props: {
 		required: Boolean,
-		forFalidate: Boolean,
-		defaultKey: String,
-		placeholder: String,
 		cssClass: String,
-		name: String,
-		options: Object
+		placeholder: String,
 	},
 	data() {
 		return {
-			selectedKey: this.defaultKey,
+			name: false,
+			selectedText: this.placeholder,
 			active: false,
-			wrong: false
+			wrong: false,
+			options: []
 		};
 	},
-	computed: {
-		selectedText() {
-			return this.selectedKey
-				? this.options[this.selectedKey]
-				: this.placeholder
-				? this.placeholder
-				: "";
-		}
-	},
 	created() {
+		this.inputFormKey = "Select";
 		this.$emit("getInput", this);
 	},
+	mounted() {
+		this.options = this.$children;
+		this.setSelectedText();
+	},
 	methods: {
-		validate() {
-			let valid = true;
-			if (this.required && !this.selectedKey) {
-				this.wrong = true;
-				valid = false;
-			}
-			return valid;
+		setOption(option) {
+			this.name = option.name;
+			this.selectedText = option.value;
+			this.setChildActive();
 		},
-		getValue() {
-			return this.validate() ? { key: this.name, value: this.selectedKey} : false;
+		setChildActive() {
+			this.options.forEach(option => {
+				option.active = this.name == option.name;
+			});
+		},
+		setSelectedText() {
+			this.options.forEach(option => {
+				if (option.active) {
+					this.name = !option.disabled ? option.name : false;
+					this.selectedText = this.name ? option.value : `<span style="opacity: 0.5">${option.value}</span>`;
+				}
+			});
 		},
 		toggleActive() {
 			this.active = !this.active;
 		},
 		disableActive() {
 			this.active = false;
-		},
-		selectOption(key) {
-			this.wrong = false;
-			this.selectedKey = key;
 		}
 	}
 };
@@ -111,24 +99,6 @@ export default {
 }
 .select.active .options {
 	display: block;
-}
-.option {
-	padding: 12px;
-	font-size: 13px;
-	background: #fff;
-	border-left: 1px solid rgba(0, 206, 201, 1);
-	border-right: 1px solid rgba(0, 206, 201, 1);
-	&:hover {
-		background: #ccc;
-	}
-	&:first-child {
-		border-top: 1px solid #c2c9dd;
-	}
-	&:last-child {
-		border-bottom: 1px solid rgba(0, 206, 201, 1);
-		border-bottom-left-radius: 5px;
-		border-bottom-right-radius: 5px;
-	}
 }
 .angle {
 	position: absolute;
