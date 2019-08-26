@@ -1,7 +1,7 @@
 <template>
 	<div class="page">
 		<no-ssr>
-			<Accordion>
+			<Accordion name="accordi">
 				<div slot="title">Info</div>
 				<div slot="content">
 					<FormVue @submit="formCallback">
@@ -10,6 +10,7 @@
 							<OptionVue name="option2" value="Los-Angeles"></OptionVue>
 							<OptionVue name="option3" value="Washington"></OptionVue>
 						</SelectVue>
+						<SubmitBtn cssClass="dinl-mid">Submit</SubmitBtn>
 					</FormVue>
 				</div>
 			</Accordion>
@@ -27,10 +28,10 @@ if (process.browser) {
 	require("aframe");
 }
 import Accordion from "~/components/Accordion";
-import { Tabs, Tab } from "~/components/Tabs/index.js";
 import Calendar from "~/components/Calendar";
-import { SelectVue, OptionVue } from "~/components/Select";
-import FormVue from "~/components/Form";
+import { Tabs, Tab } from "~/components/Tabs";
+import { SelectVue, OptionVue } from "~/components/Select/index.js";
+import { FormVue, SubmitBtn } from "~/components/Form/index.js";
 export default {
 	name: "Main",
 	components: {
@@ -40,7 +41,8 @@ export default {
 		Calendar,
 		SelectVue,
 		OptionVue,
-		FormVue
+		FormVue,
+		SubmitBtn
 	},
 	data() {
 		return {

@@ -34,7 +34,7 @@ export default {
 		};
 	},
 	created() {
-		this.inputFormKey = "Select";
+		this.inputFormKey = "SelectVue";
 	},
 	mounted() {
 		this.options = this.$children;

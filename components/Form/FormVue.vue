@@ -1,7 +1,6 @@
 <template>
 	<div class="form">
 		<slot></slot>
-        <button @click="submit">Submit</button>
 	</div>
 </template>
 
@@ -12,6 +11,9 @@ export default {
 		return {
 			inputs: []
 		};
+	},
+	created() {
+		this.formKey = "FormVue"
 	},
 	mounted() {
 		this.setInputs();

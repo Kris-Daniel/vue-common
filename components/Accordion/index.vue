@@ -48,6 +48,7 @@ export default {
 		cssClass: {
 			default: false
 		},
+		name: String,
 		isOpen: Boolean
 	},
 	data() {
@@ -65,12 +66,13 @@ export default {
 	},
 	beforeMount() {
 		if (!window.VueAccordeons) window.VueAccordeons = {};
-		if (!window.VueAccordeons[this.cssClass])
-			window.VueAccordeons[this.cssClass] = [];
-		window.VueAccordeons[this.cssClass].push(this);
+		if (!window.VueAccordeons[this.name])
+			window.VueAccordeons[this.name] = [];
+		window.VueAccordeons[this.name].push(this);
 	},
 	beforeDestroy() {
-		if (window.VueAccordeons) delete window.VueAccordeons;
+		if (window.VueAccordeons[this.name])
+			window.VueAccordeons[this.name].filter(item => item != this);
 	},
 	created() {
 		if (this.isOpen) this.active = true;
@@ -79,9 +81,8 @@ export default {
 	methods: {
 		toggleActive() {
 			let state = this.active;
-			window.VueAccordeons[this.cssClass].forEach(value => {
-				if (value.commonCssClass === this.cssClass)
-					value.active = false;
+			window.VueAccordeons[this.name].forEach(value => {
+				if (value.name === this.name) value.active = false;
 			});
 			this.active = !state;
 		},
@@ -186,7 +187,8 @@ export default {
 	&:not(.active) .accord_content {
 		border-top: 1px solid transparent;
 	}
-	&.active .accord_content:not(.accord-leave-active):not(.accord-enter-active) {
+	&.active
+		.accord_content:not(.accord-leave-active):not(.accord-enter-active) {
 		height: auto !important;
 	}
 	.accord_content-body {
