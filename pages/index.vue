@@ -3,20 +3,21 @@
 		<no-ssr>
 			<Accordion>
 				<div slot="title">Info</div>
-				<div slot="content">Content</div>
+				<div slot="content">
+					<FormVue @submit="formCallback">
+						<SelectVue name="city" placeholder="option1" :required="true">
+							<OptionVue name="option1" value="Select a City to visit:" :disabled="true" :selected="true"></OptionVue>
+							<OptionVue name="option2" value="Los-Angeles"></OptionVue>
+							<OptionVue name="option3" value="Washington"></OptionVue>
+						</SelectVue>
+					</FormVue>
+				</div>
 			</Accordion>
 			<Tabs>
 				<Tab name="Iron" :selected="true">Iron</Tab>
 				<Tab name="Gold">Gold</Tab>
 			</Tabs>
 			<Calendar :settings="calendarSettings"></Calendar>
-			<FormVue @submit="formCallback">
-				<SelectVue name="city" placeholder="option1" :required="true">
-					<OptionVue name="option1" value="Select a City to visit:" :disabled="true" :selected="true"></OptionVue>
-					<OptionVue name="option2" value="Los-Angeles"></OptionVue>
-					<OptionVue name="option3" value="Washington"></OptionVue>
-				</SelectVue>
-			</FormVue>
 		</no-ssr>
 	</div>
 </template>
@@ -61,7 +62,7 @@ export default {
 					windowResize();
 					window.addEventListener("resize", windowResize);
 				}
-			},
+			}
 		};
 	},
 	created() {},

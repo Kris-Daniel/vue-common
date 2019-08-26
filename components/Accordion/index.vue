@@ -1,40 +1,38 @@
 <template>
 	<div class="accord" :class="[{active}, commonCssClass]" :ref="commonCssClass">
-		<no-ssr placeholder="Loading...">
-			<div class="accord_head" @click="toggleActive">
-				<div class="accord_head-left">
-					<div class="accord_head-icon" v-if="icon">
-						<component :is="icon"></component>
-					</div>
-					<div class="accord_head-title">
-						<slot name="title"></slot>
-					</div>
+		<div class="accord_head" @click="toggleActive">
+			<div class="accord_head-left">
+				<div class="accord_head-icon" v-if="icon">
+					<component :is="icon"></component>
 				</div>
-				<div class="accord_head-right">
-					<div class="not-active" :style="{display: [(hasHeadActive ? 'block' : '')]}">
-						<div class="accord_head_carret">
-							<component :is="carret"></component>
-						</div>
-					</div>
-					<div class="is-active">
-						<slot name="head-active"></slot>
-					</div>
+				<div class="accord_head-title">
+					<slot name="title"></slot>
 				</div>
 			</div>
-			<transition
-				name="accord"
-				v-on:before-enter="beforeEnter"
-				v-on:enter="enter"
-				v-on:before-leave="beforeLeave"
-				v-on:leave="leave"
-			>
-				<div class="accord_content" v-show="active" ref="content">
-					<div class="accord_content-body">
-						<slot name="content">Hello</slot>
+			<div class="accord_head-right">
+				<div class="not-active" :style="{display: [(hasHeadActive ? 'block' : '')]}">
+					<div class="accord_head_carret">
+						<component :is="carret"></component>
 					</div>
 				</div>
-			</transition>
-		</no-ssr>
+				<div class="is-active">
+					<slot name="head-active"></slot>
+				</div>
+			</div>
+		</div>
+		<transition
+			name="accord"
+			v-on:before-enter="beforeEnter"
+			v-on:enter="enter"
+			v-on:before-leave="beforeLeave"
+			v-on:leave="leave"
+		>
+			<div class="accord_content" v-show="active" ref="content">
+				<div class="accord_content-body">
+					<slot name="content">Hello</slot>
+				</div>
+			</div>
+		</transition>
 	</div>
 </template>
 
@@ -50,8 +48,7 @@ export default {
 		cssClass: {
 			default: false
 		},
-		isOpen: Boolean,
-		minHeight: Number
+		isOpen: Boolean
 	},
 	data() {
 		return {
@@ -93,16 +90,9 @@ export default {
 		},
 		enter(el) {
 			el.style.height = el.scrollHeight + "px";
-			this.$nextTick(() => {
-				el.style.height = this.minHeight
-					? this.minHeight + "px"
-					: el.scrollHeight + "px";
-			});
 		},
 		beforeLeave(el) {
-			el.style.height = this.minHeight
-				? this.minHeight + "px"
-				: el.scrollHeight + "px";
+			el.style.height = el.scrollHeight + "px";
 		},
 		leave(el) {
 			el.style.height = "0";
@@ -126,6 +116,7 @@ export default {
 		color: #293143;
 		border: 1px solid #f3f3f6;
 		cursor: pointer;
+		transition: 130ms border-color ease;
 		&:hover {
 			border: 1px solid coral;
 		}
@@ -185,10 +176,18 @@ export default {
 		transition: 130ms height ease;
 		border: 1px solid coral;
 		border-top: none;
+	}
+	.accord-leave-active,
+	.accord-enter-active {
 		overflow: hidden;
+		border: 1px solid coral;
+		border-top: none;
 	}
 	&:not(.active) .accord_content {
-		border: 1px solid transparent;
+		border-top: 1px solid transparent;
+	}
+	&.active .accord_content:not(.accord-leave-active):not(.accord-enter-active) {
+		height: auto !important;
 	}
 	.accord_content-body {
 		padding: 24px 50px;
