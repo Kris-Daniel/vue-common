@@ -9,7 +9,7 @@
 					<slot name="title"></slot>
 				</div>
 			</div>
-			<div class="accord_head-right">
+			<div class="accord_head-right" v-if="hasHeadActive">
 				<div class="not-active" :style="{display: [(hasHeadActive ? 'block' : '')]}">
 					<div class="accord_head_carret">
 						<component :is="carret"></component>
@@ -61,7 +61,7 @@ export default {
 			return this.cssClass ? this.cssClass : "";
 		},
 		hasHeadActive() {
-			return !this.$slots["head-active"];
+			return !!this.$slots["head-active"];
 		}
 	},
 	beforeMount() {
@@ -117,7 +117,6 @@ export default {
 		color: #293143;
 		border: 1px solid #f3f3f6;
 		cursor: pointer;
-		transition: 130ms border-color ease;
 		&:hover {
 			border: 1px solid coral;
 		}
@@ -161,7 +160,7 @@ export default {
 		display: inline-block;
 		vertical-align: middle;
 		line-height: 1;
-		transition: 200ms all ease-in-out;
+		transition: 130ms all ease-in-out;
 		font-size: 4px;
 		svg {
 			width: 9px;
