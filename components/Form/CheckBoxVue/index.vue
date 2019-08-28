@@ -42,6 +42,9 @@ export default {
 				};
 			}
 			return value;
+        },
+        trigger() {
+			this.toggleChecked();
 		},
 		toggleChecked() {
 			this.isChecked = !this.isChecked;

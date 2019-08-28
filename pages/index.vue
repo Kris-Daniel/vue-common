@@ -32,6 +32,7 @@
 					:checked="true"
 					:required="true"
 				></CheckboxVue>
+				<LabelVue name="city">Click me</LabelVue>
 				<hr />
 				<SubmitBtn cssClass="dinl-mid">Submit</SubmitBtn>
 			</FormVue>
@@ -49,6 +50,7 @@ import Calendar from "~/components/Calendar";
 import { Tabs, Tab } from "~/components/Tabs";
 import {
 	FormVue,
+	LabelVue,
 	SubmitBtn,
 	InputVue,
 	CheckboxVue,
@@ -67,7 +69,8 @@ export default {
 		FormVue,
 		InputVue,
 		CheckboxVue,
-		SubmitBtn
+		SubmitBtn,
+		LabelVue
 	},
 	data() {
 		return {

@@ -9,6 +9,7 @@
 		v-model="value"
 		@input="inputChanged"
 		@click="disableWrong"
+		ref="input"
 	/>
 </template>
 <script>
@@ -47,6 +48,9 @@ export default {
 				};
 			}
 			return value;
+		},
+		trigger() {
+			this.$refs.input.focus();
 		},
 		disableWrong() {
 			this.wrong = false;

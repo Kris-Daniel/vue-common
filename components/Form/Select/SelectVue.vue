@@ -54,6 +54,10 @@ export default {
 			}
 			return value;
 		},
+		trigger($event) {
+			$event.stopPropagation();
+			this.toggleActive();
+		},
 		setOption(option) {
 			this.wrong = false;
 			this.selectedOption = option.name;
