@@ -28,7 +28,6 @@ export default {
 .accord_head {
 	position: relative;
 	display: flex;
-	justify-content: space-between;
 	width: 100%;
 	align-items: center;
 	height: 60px;
@@ -73,17 +72,22 @@ export default {
 }
 
 .accord_head_carret {
-	display: inline-block;
-	vertical-align: middle;
+	position: absolute;
+	right: 50px;
+	top: 50%;
 	line-height: 1;
-	transition: 130ms all ease-in-out;
 	font-size: 4px;
+	transform: translateY(-50%);
+	transition: 130ms all ease-in-out;
+	@media(max-width: 850px) {
+        right: 20px;;
+    }
 	svg {
 		width: 9px;
 		height: 4px;
 	}
 }
 &.active > .accord_head_carret {
-	transform: rotate(180deg);
+	transform: translateY(-50%) rotate(180deg);
 }
 </style>
