@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import FindParent from "./helpers/FindParent";
+import FindParent from "../helpers/FindParent";
 export default {
     name: "SubmitBtn",
     props: ["cssClass"],
@@ -18,4 +18,4 @@ export default {
         }
     }
 }
-</script>
+</script> 

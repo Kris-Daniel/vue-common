@@ -7,12 +7,12 @@
 		:class="[cssClass, {wrong}]"
 		:placeholder="placeholder"
 		v-model="value"
-		@change="inputChanged"
+		@input="inputChanged"
 		@click="disableWrong"
 	/>
 </template>
 <script>
-import InputsMixin from "./helpers/InputsMixin";
+import InputsMixin from "../helpers/InputsMixin";
 export default {
 	name: "InputVue",
 	props: [
@@ -62,7 +62,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.input.wrong{
+.input.wrong {
 	border: 1px solid rgba(255, 109, 158, 1);
 }
 </style>

@@ -1,5 +1,5 @@
-import FormVue from "./FormVue.vue";
-import InputVue from "./InputVue.vue";
-import SubmitBtn from "./SubmitBtn.vue";
+import FormVue from "./FormVue";
+import InputVue from "./InputVue";
+import SubmitBtn from "./SubmitBtn";
 import {SelectVue, OptionVue} from "./Select";
 export {FormVue, SubmitBtn, InputVue, SelectVue, OptionVue};
