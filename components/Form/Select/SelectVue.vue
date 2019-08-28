@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import InputsMixin from "../helpers/InputsMixin";
 export default {
 	name: "SelectVue",
 	props: {
@@ -24,6 +25,7 @@ export default {
 		cssClass: String,
 		placeholder: String
 	},
+	mixins: [InputsMixin],
 	data() {
 		return {
 			selectedOption: null,

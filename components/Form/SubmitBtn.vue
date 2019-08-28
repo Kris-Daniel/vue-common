@@ -5,15 +5,12 @@
 </template>
 
 <script>
+import FindParent from "./helpers/FindParent";
 export default {
     name: "SubmitBtn",
     props: ["cssClass"],
     created() {
-        let parent = this.$parent;
-        while(parent && !parent.formKey) {
-            parent = parent.$parent;
-        }
-        this.parent = parent;
+        this.parent = FindParent.getParent(this, "formKey");
     },
     methods: {
         submit() {

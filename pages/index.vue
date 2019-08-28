@@ -5,15 +5,15 @@
 				<div slot="title">Info</div>
 				<div slot="content">Content</div>
 			</Accordion>
-			<Tabs>
-				<Tab name="Iron" :selected="true">
-					<FormVue @submit="formCallback">
-						<SelectVue name="city" placeholder="option1" :required="true">
-							<OptionVue name="option1" value="Select a City to visit:" :disabled="true" :selected="true"></OptionVue>
-							<OptionVue name="option2" value="Los-Angeles"></OptionVue>
-							<OptionVue name="option3" value="Washington"></OptionVue>
-						</SelectVue>
-						<hr>
+			<FormVue @submit="formCallback">
+				<SelectVue name="city" placeholder="option1" :required="true">
+					<OptionVue name="option1" value="Select a City to visit:" :disabled="true" :selected="true"></OptionVue>
+					<OptionVue name="option2" value="Los-Angeles"></OptionVue>
+					<OptionVue name="option3" value="Washington"></OptionVue>
+				</SelectVue>
+				<hr />
+				<Tabs>
+					<Tab name="Iron" :selected="true">
 						<InputVue
 							type="text"
 							name="name"
@@ -25,12 +25,13 @@
 							:validate="(value) => value.length > 8 ? true : false"
 							:validateEver="(value) => value.length > 10 ? value.slice(0, 10) : value"
 						></InputVue>
-						<hr>
-						<SubmitBtn cssClass="dinl-mid">Submit</SubmitBtn>
-					</FormVue>
-				</Tab>
-				<Tab name="Gold">Gold</Tab>
-			</Tabs>
+					</Tab>
+					<Tab name="Gold">Gold</Tab>
+				</Tabs>
+
+				<hr />
+				<SubmitBtn cssClass="dinl-mid">Submit</SubmitBtn>
+			</FormVue>
 			<Calendar :settings="calendarSettings"></Calendar>
 		</no-ssr>
 	</div>
@@ -43,8 +44,7 @@ if (process.browser) {
 import Accordion from "~/components/Accordion";
 import Calendar from "~/components/Calendar";
 import { Tabs, Tab } from "~/components/Tabs";
-import { SelectVue, OptionVue } from "~/components/Select/index.js";
-import { FormVue, SubmitBtn, InputVue } from "~/components/Form/index.js";
+import { FormVue, SubmitBtn, InputVue, SelectVue, OptionVue } from "~/components/Form/index.js";
 export default {
 	name: "Main",
 	components: {

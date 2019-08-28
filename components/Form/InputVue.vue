@@ -12,6 +12,7 @@
 	/>
 </template>
 <script>
+import InputsMixin from "./helpers/InputsMixin";
 export default {
 	name: "InputVue",
 	props: [
@@ -25,6 +26,7 @@ export default {
 		"validateEver",
 		"required"
 	],
+	mixins: [InputsMixin],
 	data() {
 		return {
 			value: this.defaultValue,

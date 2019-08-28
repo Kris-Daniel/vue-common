@@ -15,14 +15,9 @@ export default {
 	created() {
 		this.formKey = "FormVue"
 	},
-	mounted() {
-		this.setInputs();
-	},
 	methods: {
-		setInputs() {
-			this.$children.forEach(item => {
-				if (item.inputFormKey) this.inputs.push(item);
-			});
+		addInput(input) {
+			this.inputs.push(input);
 		},
 		submit() {
 			let valid = true;
