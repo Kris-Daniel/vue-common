@@ -25,7 +25,10 @@ export default {
 		id: String,
 		cssClass: String,
 		placeholder: String,
-		defaultValue: String,
+		defaultValue: {
+			type: String,
+			default: ""
+		},
 		validate: Function,
 		validateEver: Function,
 		required: Boolean
@@ -43,7 +46,11 @@ export default {
 	methods: {
 		getValue() {
 			let value = null;
-			if (this.required && !this.validate(this.value)) {
+			if (
+				this.required &&
+				(this.value == "" ||
+					(this.validate && !this.validate(this.value)))
+			) {
 				this.wrong = true;
 			} else {
 				value = {
