@@ -22,7 +22,9 @@ export default {
 
 <style lang="less">
 	.now{
-		float: right;
+		position: absolute;
+		top: 100%;
+		right: 0;
 		margin: 14px 6px;
 		color: coral;
 		cursor: pointer;

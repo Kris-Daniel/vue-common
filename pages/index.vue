@@ -6,29 +6,27 @@
 				<div slot="content">Content</div>
 			</Accordion>
 			<FormVue @submit="formCallback">
+				<Tabs>
+					<Tab name="Iron" :selected="true">Iron</Tab>
+					<Tab name="Gold">Gold</Tab>
+				</Tabs>
+				<hr />
 				<SelectVue name="city" placeholder="option1" :required="true">
 					<OptionVue name="option1" value="Select a City to visit:" :disabled="true" :selected="true"></OptionVue>
 					<OptionVue name="option2" value="Los-Angeles"></OptionVue>
 					<OptionVue name="option3" value="Washington"></OptionVue>
 				</SelectVue>
-				<hr />
-				<Tabs>
-					<Tab name="Iron" :selected="true">
-						<InputVue
-							type="text"
-							name="name"
-							id="vname"
-							cssClass="vinput"
-							defaultValue="Delete me"
-							placeholder="Insert text"
-							:required="true"
-							:validate="(value) => value.length > 8 ? true : false"
-							:validateEver="(value) => value.length > 10 ? value.slice(0, 10) : value"
-						></InputVue>
-					</Tab>
-					<Tab name="Gold">Gold</Tab>
-				</Tabs>
-
+				<InputVue
+					type="text"
+					name="name"
+					id="vname"
+					cssClass="vinput"
+					defaultValue="Delete me"
+					placeholder="Insert text"
+					:required="true"
+					:validate="(value) => value.length > 8 ? true : false"
+					:validateEver="(value) => value.length > 10 ? value.slice(0, 10) : value"
+				></InputVue>
 				<hr />
 				<SubmitBtn cssClass="dinl-mid">Submit</SubmitBtn>
 			</FormVue>
@@ -44,7 +42,13 @@ if (process.browser) {
 import Accordion from "~/components/Accordion";
 import Calendar from "~/components/Calendar";
 import { Tabs, Tab } from "~/components/Tabs";
-import { FormVue, SubmitBtn, InputVue, SelectVue, OptionVue } from "~/components/Form/index.js";
+import {
+	FormVue,
+	SubmitBtn,
+	InputVue,
+	SelectVue,
+	OptionVue
+} from "~/components/Form/index.js";
 export default {
 	name: "Main",
 	components: {

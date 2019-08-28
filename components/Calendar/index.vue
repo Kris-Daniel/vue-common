@@ -1,6 +1,8 @@
 <template>
 	<div class="calendar" :class="[cssClass]">
-		<CurrentView></CurrentView>
+		<div class="calendar_relative">
+			<CurrentView></CurrentView>
+		</div>
 	</div>
 </template>
 
@@ -30,11 +32,14 @@ export default {
 </script>
 
 <style lang="less" scoped>
-	.calendar{
-		max-width: 250px;
-		margin: 0 auto;
-		user-select: none;
-		padding: 5px;
-		box-shadow: 0 0 4px 0px rgba(0, 0, 0, 0.4);
-	}
+.calendar {
+	max-width: 250px;
+	margin: 0 auto;
+	user-select: none;
+	padding: 5px;
+	box-shadow: 0 0 4px 0px rgba(0, 0, 0, 0.4);
+}
+.calendar_relative {
+	position: relative;
+}
 </style>
