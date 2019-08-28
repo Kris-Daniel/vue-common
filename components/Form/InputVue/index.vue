@@ -16,17 +16,20 @@
 import InputsMixin from "../helpers/InputsMixin";
 export default {
 	name: "InputVue",
-	props: [
-		"type",
-		"name",
-		"id",
-		"cssClass",
-		"placeholder",
-		"defaultValue",
-		"validate",
-		"validateEver",
-		"required"
-	],
+	props: {
+		type: {
+			type: String,
+			default: "text"
+		},
+		name: String,
+		id: String,
+		cssClass: String,
+		placeholder: String,
+		defaultValue: String,
+		validate: Function,
+		validateEver: Function,
+		required: Boolean
+	},
 	mixins: [InputsMixin],
 	data() {
 		return {
