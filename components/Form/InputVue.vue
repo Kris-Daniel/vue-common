@@ -1,20 +1,28 @@
 <template>
-	<label class="label-input" :class="cssClass">
-		<slot name="label"></slot>
-		<input :type="type" :placeholder="placeholder" v-model="value" @change="inputChanged" ref="input" />
-	</label>
+	<input
+		:type="type"
+		:name="name"
+		:id="id"
+		class="input"
+		:class="[cssClass, {wrong}]"
+		:placeholder="placeholder"
+		v-model="value"
+		@change="inputChanged"
+		@click="disableWrong"
+	/>
 </template>
 <script>
 export default {
 	name: "InputVue",
 	props: [
 		"type",
+		"name",
+		"id",
+		"cssClass",
+		"placeholder",
+		"defaultValue",
 		"validate",
 		"validateEver",
-		"name",
-		"placeholder",
-		"cssClass",
-		"defaultValue",
 		"required"
 	],
 	data() {
@@ -23,10 +31,24 @@ export default {
 			wrong: false
 		};
 	},
-	mounted() {
-		this.input = this.$refs.input;
+	created() {
+		this.inputFormKey = "InputVue";
 	},
 	methods: {
+		getValue() {
+			let value = null;
+			if (this.required && !this.validate(this.value)) {
+				this.wrong = true;
+			} else {
+				value = {
+					[this.name]: this.value
+				};
+			}
+			return value;
+		},
+		disableWrong() {
+			this.wrong = false;
+		},
 		inputChanged() {
 			this.wrong = false;
 			this.value = !this.validateEver
@@ -36,3 +58,9 @@ export default {
 	}
 };
 </script>
+
+<style lang="less" scoped>
+.input.wrong{
+	border: 1px solid rgba(255, 109, 158, 1);
+}
+</style>

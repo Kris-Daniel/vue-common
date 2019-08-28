@@ -14,9 +14,17 @@
 							<OptionVue name="option3" value="Washington"></OptionVue>
 						</SelectVue>
 						<hr>
-						<InputVue>
-							<div class="dinl-mid" slot="label">Label text</div>
-						</InputVue>
+						<InputVue
+							type="text"
+							name="name"
+							id="vname"
+							cssClass="vinput"
+							defaultValue="Delete me"
+							placeholder="Insert text"
+							:required="true"
+							:validate="(value) => value.length > 8 ? true : false"
+							:validateEver="(value) => value.length > 10 ? value.slice(0, 10) : value"
+						></InputVue>
 						<hr>
 						<SubmitBtn cssClass="dinl-mid">Submit</SubmitBtn>
 					</FormVue>

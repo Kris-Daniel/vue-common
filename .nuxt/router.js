@@ -2,9 +2,9 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import { interopDefault } from './utils'
 
-const _854e60ec = () => interopDefault(import('..\\pages\\news\\index.vue' /* webpackChunkName: "pages_news_index" */))
-const _369ed585 = () => interopDefault(import('..\\pages\\news\\_newsid.vue' /* webpackChunkName: "pages_news__newsid" */))
-const _16a4bc06 = () => interopDefault(import('..\\pages\\index.vue' /* webpackChunkName: "pages_index" */))
+const _a651f568 = () => interopDefault(import('..\\pages\\news\\index.vue' /* webpackChunkName: "pages_news_index" */))
+const _3f66a2c7 = () => interopDefault(import('..\\pages\\news\\_newsid.vue' /* webpackChunkName: "pages_news__newsid" */))
+const _156fd13f = () => interopDefault(import('..\\pages\\index.vue' /* webpackChunkName: "pages_index" */))
 
 Vue.use(Router)
 
@@ -82,15 +82,15 @@ export function createRouter() {
 
     routes: [{
       path: "/news",
-      component: _854e60ec,
+      component: _a651f568,
       name: "news"
     }, {
       path: "/news/:newsid",
-      component: _369ed585,
+      component: _3f66a2c7,
       name: "news-newsid"
     }, {
       path: "/",
-      component: _16a4bc06,
+      component: _156fd13f,
       name: "index"
     }],
 

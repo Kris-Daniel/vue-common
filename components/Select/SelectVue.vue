@@ -75,6 +75,7 @@ export default {
 		},
 		toggleActive() {
 			this.active = !this.active;
+			this.wrong = false;
 		},
 		disableActive() {
 			this.active = false;
