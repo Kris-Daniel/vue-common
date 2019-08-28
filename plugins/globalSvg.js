@@ -24,6 +24,7 @@ import InfoSVG from "~/assets/svg/InfoSVG";
 import FieldsSVG from "~/assets/svg/FieldsSVG";
 import Calendar2SVG from "~/assets/svg/Calendar2SVG";
 import LogoCirclesSVG from "~/assets/svg/LogoCirclesSVG";
+import CheckSVG from "~/assets/svg/CheckSVG";
 
 Vue.component("AngleDownSVG", AngleDownSVG);
 Vue.component("AngleLeftSVG", AngleLeftSVG);
@@ -50,3 +51,4 @@ Vue.component("InfoSVG", InfoSVG);
 Vue.component("FieldsSVG", FieldsSVG);
 Vue.component("Calendar2SVG", Calendar2SVG);
 Vue.component("LogoCirclesSVG", LogoCirclesSVG);
+Vue.component("CheckSVG", CheckSVG);

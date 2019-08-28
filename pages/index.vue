@@ -27,6 +27,11 @@
 					:validate="(value) => value.length > 8 ? true : false"
 					:validateEver="(value) => value.length > 10 ? value.slice(0, 10) : value"
 				></InputVue>
+				<CheckboxVue
+					name="is18"
+					:checked="true"
+					:required="true"
+				></CheckboxVue>
 				<hr />
 				<SubmitBtn cssClass="dinl-mid">Submit</SubmitBtn>
 			</FormVue>
@@ -46,6 +51,7 @@ import {
 	FormVue,
 	SubmitBtn,
 	InputVue,
+	CheckboxVue,
 	SelectVue,
 	OptionVue
 } from "~/components/Form/index.js";
@@ -60,6 +66,7 @@ export default {
 		OptionVue,
 		FormVue,
 		InputVue,
+		CheckboxVue,
 		SubmitBtn
 	},
 	data() {
