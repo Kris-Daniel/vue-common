@@ -1,5 +1,5 @@
 <template>
-	<div class="label" @click="triggerInput">
+	<div class="label" :class="[cssClass, {wrong}]" @click="triggerInput">
 		<slot></slot>
 	</div>
 </template>
@@ -17,6 +17,11 @@ export default {
 			parent: FindParent.getParent(this, "formKey"),
 			attachedInput: false
 		};
+	},
+	computed: {
+		wrong() {
+			return this.attachedInput ? this.attachedInput.wrong : false;
+		}
 	},
 	created() {
 		if (this.parent && this.name) {
