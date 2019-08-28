@@ -16,6 +16,18 @@
 					<OptionVue name="option2" value="Los-Angeles"></OptionVue>
 					<OptionVue name="option3" value="Washington"></OptionVue>
 				</SelectVue>
+				<hr>
+				<TextareaVue
+					name="description"
+					id="vname"
+					cssClass="vinput"
+					defaultValue="Delete me"
+					placeholder="Insert text"
+					:required="true"
+					:validate="(value) => value.length > 8 ? true : false"
+					:validateEver="(value) => value.length > 10 ? value.slice(0, 10) : value"
+				></TextareaVue>
+				<hr>
 				<InputVue
 					type="text"
 					name="name"
@@ -29,13 +41,7 @@
 				></InputVue>
 				<CheckboxVue name="is18" :checked="true" :required="true"></CheckboxVue>
 				<LabelVue name="ios">Click me</LabelVue>
-				<IosSwitcher
-					name="ios"
-					:checked="true"
-					:required="true"
-					textOn="Work"
-					textOff="Not work"
-				></IosSwitcher>
+				<IosSwitcher name="ios" :checked="true" :required="true" textOn="Work" textOff="Not work"></IosSwitcher>
 				<hr />
 				<SubmitBtn cssClass="dinl-mid">Submit</SubmitBtn>
 			</FormVue>
@@ -56,6 +62,7 @@ import {
 	LabelVue,
 	SubmitBtn,
 	InputVue,
+	TextareaVue,
 	CheckboxVue,
 	IosSwitcher,
 	SelectVue,
@@ -72,6 +79,7 @@ export default {
 		OptionVue,
 		FormVue,
 		InputVue,
+		TextareaVue,
 		CheckboxVue,
 		IosSwitcher,
 		SubmitBtn,

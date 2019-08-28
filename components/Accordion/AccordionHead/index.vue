@@ -35,6 +35,7 @@ export default {
 	background: #fff;
 	color: #293143;
 	border: 1px solid #f3f3f6;
+	user-select: none;
 	cursor: pointer;
 	&:hover {
 		border: 1px solid coral;
