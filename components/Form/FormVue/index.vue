@@ -9,11 +9,15 @@ export default {
     name: "FormVue",
 	data() {
 		return {
+			isRendered: false,
 			inputs: []
 		};
 	},
 	created() {
 		this.formKey = "FormVue"
+	},
+	mounted() {
+		this.isRendered = true;
 	},
 	methods: {
 		addInput(input) {

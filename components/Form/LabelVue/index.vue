@@ -1,5 +1,5 @@
 <template>
-	<div class="label" :class="[cssClass, {wrong}]" @click="triggerInput">
+	<div class="label" :class="[cssClass, {wrong}]" @click="triggerInput" ref="label">
 		<slot></slot>
 	</div>
 </template>
@@ -10,7 +10,8 @@ export default {
 	name: "LabelVue",
 	props: {
 		cssClass: String,
-		name: String
+		name: String,
+		canChangeText: Boolean
 	},
 	data() {
 		return {
@@ -23,17 +24,25 @@ export default {
 			return this.attachedInput ? this.attachedInput.wrong : false;
 		}
 	},
-	created() {
-		if (this.parent && this.name) {
-			this.attachedInput = this.parent.inputs.find(
-				input => input.name == this.name
-			);
+	watch: {
+		["parent.isRendered"]() {
+			if (this.name) {
+				this.attachedInput = this.parent.inputs.find(
+					input => input.name == this.name
+				);
+				if (this.attachedInput) {
+					this.attachedInput.attachedLabel = this;
+				}
+			}
 		}
 	},
 	methods: {
 		triggerInput($event) {
 			if (this.attachedInput && this.attachedInput.trigger)
 				this.attachedInput.trigger($event);
+		},
+		changeText(text) {
+			if (this.canChangeText) this.$refs.label.innerHTML = text;
 		}
 	}
 };

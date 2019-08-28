@@ -27,12 +27,15 @@
 					:validate="(value) => value.length > 8 ? true : false"
 					:validateEver="(value) => value.length > 10 ? value.slice(0, 10) : value"
 				></InputVue>
-				<CheckboxVue
-					name="is18"
+				<CheckboxVue name="is18" :checked="true" :required="true"></CheckboxVue>
+				<LabelVue name="ios">Click me</LabelVue>
+				<IosSwitcher
+					name="ios"
 					:checked="true"
 					:required="true"
-				></CheckboxVue>
-				<LabelVue name="city">Click me</LabelVue>
+					textOn="Work"
+					textOff="Not work"
+				></IosSwitcher>
 				<hr />
 				<SubmitBtn cssClass="dinl-mid">Submit</SubmitBtn>
 			</FormVue>
@@ -54,6 +57,7 @@ import {
 	SubmitBtn,
 	InputVue,
 	CheckboxVue,
+	IosSwitcher,
 	SelectVue,
 	OptionVue
 } from "~/components/Form/index.js";
@@ -69,6 +73,7 @@ export default {
 		FormVue,
 		InputVue,
 		CheckboxVue,
+		IosSwitcher,
 		SubmitBtn,
 		LabelVue
 	},
