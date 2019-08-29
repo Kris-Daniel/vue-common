@@ -54,10 +54,4 @@ export default {
 .accord_content.active:not(.accord-leave-active):not(.accord-enter-active) {
 	height: auto !important;
 }
-.accord_content-body {
-	padding: 24px 50px;
-	@media (max-width: 850px) {
-		padding: 24px 20px;
-	}
-}
 </style>

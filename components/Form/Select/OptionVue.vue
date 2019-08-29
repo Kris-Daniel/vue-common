@@ -1,19 +1,23 @@
 <template>
 	<div class="option" :class="{active, disabled}" @click="setOption">
-		<span class="option_text">
-			<slot>{{value}}</slot>
-		</span>
+		<div class="option_text" ref="value">
+			<slot></slot>
+		</div>
 	</div>
 </template>
 
 <script>
 export default {
 	name: "OptionVue",
-	props: ["name", "value", "disabled", "selected"],
+	props: ["name", "disabled", "selected"],
 	data() {
 		return {
-			active: this.selected
+			active: this.selected,
+			value: ""
 		};
+	},
+	mounted() {
+		this.value = this.$refs.value.innerHTML;
 	},
 	methods: {
 		setOption($event) {
@@ -47,6 +51,13 @@ export default {
 	}
 	&.disabled .option_text{
 		opacity: 0.5;
+	}
+	.option_text svg{
+		height: 1em;
+		width: 1em;
+		line-height: 1em;
+		display: inline-block;
+		vertical-align: middle;
 	}
 }
 </style>

@@ -2,7 +2,10 @@
 	<div class="page">
 		<no-ssr>
 			<Accordion name="accordi">
-				<div slot="title">Info</div>
+				<div slot="title">
+					<HomeSVG></HomeSVG>
+					<div class="dinl-mid">Info</div>
+				</div>
 				<div slot="content">Content</div>
 			</Accordion>
 			<FormVue @submit="formCallback">
@@ -12,11 +15,17 @@
 				</Tabs>
 				<hr />
 				<SelectVue name="city" placeholder="option1" :required="true">
-					<OptionVue name="option1" value="Select a City to visit:" :disabled="true" :selected="true"></OptionVue>
-					<OptionVue name="option2" value="Los-Angeles"></OptionVue>
-					<OptionVue name="option3" value="Washington"></OptionVue>
+					<OptionVue name="option1" :disabled="true" :selected="true">Select a City to visit:</OptionVue>
+					<OptionVue name="option2">
+						<HomeSVG></HomeSVG>
+						<div class="dinl-mid">Los-Angeles</div>
+					</OptionVue>
+					<OptionVue name="option3">
+						<GearsSVG></GearsSVG>
+						<div class="dinl-mid">Washington</div>
+					</OptionVue>
 				</SelectVue>
-				<hr>
+				<hr />
 				<TextareaVue
 					name="description"
 					id="vname"
@@ -27,7 +36,7 @@
 					:validate="(value) => value.length > 8 ? true : false"
 					:validateEver="(value) => value.length > 10 ? value.slice(0, 10) : value"
 				></TextareaVue>
-				<hr>
+				<hr />
 				<InputVue
 					type="text"
 					name="name"

@@ -5,7 +5,7 @@
 		@click="toggleActive"
 		v-click-outside="disableActive"
 	>
-		<span v-html="selectedText"></span>
+		<div class="select_text" ref="text"></div>
 		<div class="angle">
 			<CarretDownSVG></CarretDownSVG>
 		</div>
@@ -29,7 +29,6 @@ export default {
 	data() {
 		return {
 			selectedOption: null,
-			selectedText: this.placeholder,
 			active: false,
 			wrong: false,
 			options: []
@@ -49,8 +48,8 @@ export default {
 				this.wrong = true;
 			} else {
 				value = {
-					[this.name]: this.selectedOption,
-				}
+					[this.name]: this.selectedOption
+				};
 			}
 			return value;
 		},
@@ -61,7 +60,7 @@ export default {
 		setOption(option) {
 			this.wrong = false;
 			this.selectedOption = option.name;
-			this.selectedText = option.value;
+			this.$refs.text.innerHTML = option.value;
 			this.setChildActive();
 		},
 		setChildActive() {
@@ -70,14 +69,16 @@ export default {
 			});
 		},
 		setSelectedText() {
+			let selectedText = this.placeholder;
 			this.options.forEach(option => {
 				if (option.active) {
 					this.selectedOption = !option.disabled ? option.name : null;
-					this.selectedText = this.selectedOption
+					selectedText = this.selectedOption
 						? option.value
 						: `<span style="opacity: 0.5">${option.value}</span>`;
 				}
 			});
+			this.$refs.text.innerHTML = selectedText;
 		},
 		toggleActive() {
 			this.active = !this.active;
@@ -126,13 +127,23 @@ export default {
 	right: 15px;
 	top: 50%;
 	transform: translateY(-50%);
-	width: 10px;
+	width: 8px;
 	transition: 150ms all ease;
 	svg {
-		width: 10px;
+		width: 8px;
 	}
 }
 .select.active .angle {
 	transform: translateY(-50%) rotate(180deg);
+}
+</style>
+
+<style lang="less">
+.select svg {
+	height: 1em;
+	width: 1em;
+	line-height: 1em;
+	display: inline-block;
+	vertical-align: middle;
 }
 </style>

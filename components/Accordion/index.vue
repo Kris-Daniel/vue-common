@@ -1,6 +1,6 @@
 <template>
 	<div class="accord" :class="[{active}, cssClass]">
-		<AccordionHead @toggleActive="toggleActive" :active="active" :icon="icon" :carret="carret">
+		<AccordionHead @toggleActive="toggleActive" :active="active" :carret="carret">
 			<slot name="title"></slot>
 		</AccordionHead>
 		<AccordionContent :active="active">
@@ -18,7 +18,6 @@ export default {
 		name: String,
 		cssClass: String,
 		isOpen: Boolean,
-		icon: String,
 		carret: {
 			default: "CarretDownSVG"
 		},
