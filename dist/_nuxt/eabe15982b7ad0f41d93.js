@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[3],{172:function(n,e,t){"use strict";t.r(e);var l={name:"SingleNews",created:function(){}},c=t(23),component=Object(c.a)(l,function(){var n=this.$createElement;return(this._self._c||n)("div",{staticClass:"news-single"},[this._v("\n    Single news\n")])},[],!1,null,null,null);e.default=component.exports}}]);

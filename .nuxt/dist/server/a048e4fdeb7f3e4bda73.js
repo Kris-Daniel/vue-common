@@ -1,0 +1,2 @@
+exports.ids=[2],exports.modules={89:function(e,t,n){"use strict";n.r(t);var l={name:"SingleNews",created(){}},r=n(1),component=Object(r.a)(l,function(){var e=this.$createElement;return(this._self._c||e)("div",{staticClass:"news-single"},[this._ssrNode("\n    Single news\n")])},[],!1,null,null,"91b9498c");t.default=component.exports}};
+//# sourceMappingURL=a048e4fdeb7f3e4bda73.js.map
