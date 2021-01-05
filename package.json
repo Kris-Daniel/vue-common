@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/Kris-Daniel/vue-common#readme",
   "devDependencies": {
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "less-loader": "^5.0.0",
     "node-less": "^1.0.0",
     "nuxt": "^2.8.1",
